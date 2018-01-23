@@ -43,6 +43,16 @@ grafana_datasource { 'prometheus':
   is_default       => true,
 }
 
+exec { 'disable basic auth':
+  command => '/usr/bin/crudini --set /etc/grafana/grafana.ini auth.basic enabled false',
+  require => [
+    Package['crudini'],
+  ]
+}->
+exec { 'enable proxy support':
+  command => '/bin/echo ". /etc/profile.d/proxy.sh" >> /etc/default/grafana-server'
+}
+
 file { '/var/lib/grafana/dashboards':
   ensure  => directory,
   owner   => grafana,
