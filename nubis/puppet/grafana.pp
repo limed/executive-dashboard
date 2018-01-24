@@ -1,3 +1,7 @@
+package { 'crudini':
+  ensure =>  present
+}
+
 class { 'grafana':
   install_method => 'repo',
   version        => '4.6.3',
@@ -5,7 +9,7 @@ class { 'grafana':
     app_mode          => 'production',
     'server'          => {
       protocol => 'http',
-      root_url => '/exec-grafana',
+      root_url => '/grafana',
     },
     'auth.anonymous'  => {
       enabled => true,
@@ -41,8 +45,7 @@ grafana_datasource { 'prometheus':
   url              => 'http://localhost:81/prometheus',
   access_mode      => 'proxy',
   is_default       => true,
-}
-
+}->
 exec { 'disable basic auth':
   command => '/usr/bin/crudini --set /etc/grafana/grafana.ini auth.basic enabled false',
   require => [
