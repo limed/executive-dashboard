@@ -27,7 +27,7 @@ class { 'grafana':
     users             => {
       allow_sign_up        => true,
       auto_assign_org      => true,
-      auto_assign_org_role => 'Editor',
+      auto_assign_org_role => 'Admin',
     },
     'dashboards.json' => {
       enabled => true,
