@@ -9,7 +9,7 @@ class { 'grafana':
     app_mode          => 'production',
     'server'          => {
       protocol => 'http',
-      root_url => '/executive-grafana',
+      root_url => '/executive-dashboard',
     },
     'auth.anonymous'  => {
       enabled => true,

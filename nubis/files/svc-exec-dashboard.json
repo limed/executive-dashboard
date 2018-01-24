@@ -1,6 +1,6 @@
 {
   "service": {
-    "name": "exec-dashboard",
+    "name": "executive-dashboard",
     "port": 3000,
     "tags": [
       "%%ENVIRONMENT%%",
