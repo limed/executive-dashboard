@@ -9,7 +9,7 @@ class { 'grafana':
     app_mode          => 'production',
     'server'          => {
       protocol => 'http',
-      root_url => '/grafana',
+      root_url => '/executive-grafana',
     },
     'auth.anonymous'  => {
       enabled => true,
@@ -42,7 +42,7 @@ grafana_datasource { 'prometheus':
   grafana_user     => 'admin',
   grafana_password => 'admin',
   type             => 'prometheus',
-  url              => 'http://localhost:81/prometheus',
+  url              => 'http://prometheus.service.consul/prometheus',
   access_mode      => 'proxy',
   is_default       => true,
 }->
@@ -70,7 +70,7 @@ file { '/var/lib/grafana/dashboards':
 }
 
 file { '/etc/consul/svc-exec-dashboard.json':
-	ensure => file,
+  ensure => file,
   owner  => root,
   group  => root,
   mode   => '0644',
